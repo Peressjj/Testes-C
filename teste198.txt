@@ -1,0 +1,21 @@
+Arquivo 01:
+
+W - Escreve arquivos;
+Se o arquivo já existir, apaga tudo;
+
+A - Le e escreve;
+Se o arquivo nao existir, nao cria outro nem apaga;
+
+r+ - Le e acrescenta mais informacoes;
+
+w+ - Leitura e escrita;
+Apaga tudo;
+
+a+ - Leitura e escrita;
+Sempre escreve no final;
+
+wb - Escrita em binário;
+Abre e sobrescreve;
+
+rb - Leitura em binário;
+apenas le;

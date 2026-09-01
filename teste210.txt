@@ -1,0 +1,9 @@
+Pessoa[0] = Joao Peres
+Idade: 20
+
+Pessoa[1] = Henrique Thomsen
+Idade: 20
+
+Pessoa[2] = Rubens de Lara
+Idade: 24
+

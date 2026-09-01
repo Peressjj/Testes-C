@@ -1,0 +1,17 @@
+Pessoa 1
+Nome: Peres22
+Idade: 2022
+Altura: 1.80
+
+Pessoa 2
+Nome: CabeliIdade: 21
+Altura: 1.70
+
+Pessoa 3
+Nome: ChapecoIdade: 19
+Altura: 1.73
+
+Nome: Peres22
+Idade: 2022
+Altura: 1.80
+

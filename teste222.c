@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 
 #define MAX 100
 #define HASH_SENHA_MESTRA 530537523UL
@@ -22,6 +23,7 @@ typedef struct chaves {
 chaves listachaves[MAX];
 int quantchaves = 0;
 
+int login();
 void menu();
 void limpartela();
 void salvarArquivo();
@@ -34,6 +36,11 @@ void excluir();
 unsigned long calcularHash(const char *texto);
 
 int main() {
+
+   if (!login()) {
+      printf("Encerrando...\n");
+      return 1;
+   }
 
    carregar();
    int opcao = -1;
@@ -80,22 +87,44 @@ int main() {
    return 0;
 }
 
+int login() {
+
+   char senhaDigitada[50];
+   
+   printf("-----------------------------------\n");
+   printf("|              Chaves             |\n");
+   printf("|                                 |\n");
+   printf("|   Insira a senha para entrar    |\n");
+   printf("|                                 |\n");
+   printf("    ");
+   fgets(senhaDigitada, 50, stdin);
+   removerQuebraDeLinha(senhaDigitada);
+   
+   if (calcularHash(senhaDigitada) != HASH_SENHA_MESTRA) {
+      printf("Senha incorreta!\n");
+      return 1;
+   }
+
+   limpartela();
+
+}
+
 void menu() {
 
    printf("-------------------------------------------------\n");
-   printf("|                                               \n|");
-   printf("|                     Menu:                     \n|");
-   printf("|                                               \n|");
-   printf("|   (1) - Salvar chave.                         \n|");
-   printf("|                                               \n|");
-   printf("|   (2) - Vizualizar chave.                     \n|");
-   printf("|                                               \n|");
-   printf("|   (3) - Atualizar chave.                      \n|");
-   printf("|                                               \n|");
-   printf("|   (4) - Excluir chave.                        \n|");
-   printf("|                                               \n|");
-   printf("|   (0) - Sair.                                 \n|");
-   printf("|                                               \n|");
+   printf("|                                               |\n");
+   printf("|                     Menu:                     |\n");
+   printf("|                                               |\n");
+   printf("|   (1) - Salvar chave.                         |\n");
+   printf("|                                               |\n");
+   printf("|   (2) - Vizualizar chave.                     |\n");
+   printf("|                                               |\n");
+   printf("|   (3) - Atualizar chave.                      |\n");
+   printf("|                                               |\n");
+   printf("|   (4) - Excluir chave.                        |\n");
+   printf("|                                               |\n");
+   printf("|   (0) - Sair.                                 |\n");
+   printf("|                                               |\n");
    printf("-------------------------------------------------\n");
 
 }
@@ -156,18 +185,6 @@ void removerQuebraDeLinha(char *texto) {
 
 void exibir() {
 
-   char senhaDigitada[50];
-
-   getchar();
-   printf("Digite a senha mestra para visualizar as chaves: ");
-   fgets(senhaDigitada, 50, stdin);
-   removerQuebraDeLinha(senhaDigitada);
-
-   if (calcularHash(senhaDigitada) != HASH_SENHA_MESTRA) {
-      printf("Senha incorreta!\n");
-      return;
-   }
-
    FILE *arq = fopen("teste222.bin", "rb");
 
    if (arq == NULL) {
@@ -195,18 +212,6 @@ void exibir() {
 }
 
 void atualizar() {
-
-   char senhaDigitada[50];
-
-   getchar();
-   printf("Digite a senha mestra para atualizar uma chave: ");
-   fgets(senhaDigitada, 50, stdin);
-   removerQuebraDeLinha(senhaDigitada);
-
-   if (calcularHash(senhaDigitada) != HASH_SENHA_MESTRA) {
-      printf("Senha incorreta!\n");
-      return;
-   }
 
    if (quantchaves == 0) {
       printf("Nenhuma chave cadastrada.\n");
@@ -253,18 +258,6 @@ void atualizar() {
 }
 
 void excluir() {
-
-   char senhaDigitada[50];
-
-   getchar();
-   printf("Digite a senha mestra para excluir: ");
-   fgets(senhaDigitada, 50, stdin);
-   removerQuebraDeLinha(senhaDigitada);
-
-   if (calcularHash(senhaDigitada) != HASH_SENHA_MESTRA) {
-      printf("Senha incorreta!\n");
-      return;
-   }
 
    int opcaoExcluir = -1;
 

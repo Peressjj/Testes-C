@@ -76,6 +76,7 @@ int main() {
    }
    
    printf("Programa encerrado!\n");
+   system("pause");
    return 0;
 }
 
